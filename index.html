@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS PLAYGROUND</title>
+</head>
+<body>
+    <style>
+        canvas{
+            width: 300px;
+            height: 200px;
+            border: 1px solid #333;
+        } 
+
+    </style>
+    <div id="mon-app">
+        <h1>Vue Js Cours</h1>
+        
+        <h2>{{compteur}}</h2>
+        <button v-on:click="plus">Plus</button>
+        <button v-on:click="moins">moins</button>
+ 
+        <br>
+        <br>
+        <canvas v-on:mousemove="coords"></canvas>
+        <p> {{ x }} / {{ y }}</p>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      
+      new Vue({
+          el: '#mon-app',
+          data: {
+              compteur : 0,
+              x: 0,
+              y: 0
+          },
+          methods: {
+            plus : function () {
+                this.compteur++
+            },
+            moins : function () {
+                this.compteur--
+            },
+            coords : function (event) {
+                this.x = event.offsetX
+                this.y = event.offsetY
+
+          },
+        }  
+      })
+    </script>
+</html>

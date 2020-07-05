@@ -17,14 +17,16 @@
     <div id="mon-app">
         <h1>Vue Js Cours</h1>
         
-        <h2>{{compteur}}</h2>
         <button v-on:click="plus">Plus</button>
         <button v-on:click="moins">moins</button>
- 
-        <br>
-        <br>
-        <canvas v-on:mousemove="coords"></canvas>
-        <p> {{ x }} / {{ y }}</p>
+
+        <h2>{{compteur}}</h2>
+
+        <p>{{ checkValeur() }}</p>
+        
+          
+      
+
     </div>
 
 
@@ -35,9 +37,8 @@
       new Vue({
           el: '#mon-app',
           data: {
-              compteur : 0,
-              x: 0,
-              y: 0
+              compteur : 0,  
+           
           },
           methods: {
             plus : function () {
@@ -46,12 +47,25 @@
             moins : function () {
                 this.compteur--
             },
-            coords : function (event) {
-                this.x = event.offsetX
-                this.y = event.offsetY
+            checkValeur: function() {
+                return this.compteur > 10 ? 'Supérieur a 10' : 'Inférieur a 10' 
+            },
+        },  
+        watch: {
+            compteur : function() {
+                
+                setTimeout(() => {
+                    this.compteur = 0
+                }, 3000);
+                
+            }
+        },
+           
+            
+          
+          
 
-          },
-        }  
+       
       })
     </script>
 </html>

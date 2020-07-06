@@ -4,28 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue JS PLAYGROUND</title>
+    <style>
+        .box{
+            height: 250px;
+            width: 250px;
+            border: 1px solid black;
+        }
+        .red {
+            background-color: crimson;
+        }
+        .bordure {
+            border: 10px solid black;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
-    <style>
-        canvas{
-            width: 300px;
-            height: 200px;
-            border: 1px solid #333;
-        } 
-
-    </style>
+   
     <div id="mon-app">
         <h1>Vue Js Cours</h1>
         
-        <button v-on:click="plus">Plus</button>
-        <button v-on:click="moins">moins</button>
-
-        <h2>{{compteur}}</h2>
-
-        <p>{{ checkValeur() }}</p>
-        
-          
+    <button v-on:click="toggleBox = !toggleBox"> color</button>
       
+    <div v-if="toggleBox" class="box red"></div>
+    <p v-else-if="!toggleBox" class="box yellow"></p>
+
+    <ul>
+        <li v-for="obj in objChat">
+            <p v-for="(val, props) in obj"> {{ props }} : {{ val }}</p>
+        </li>
+    </ul>
 
     </div>
 
@@ -37,35 +47,17 @@
       new Vue({
           el: '#mon-app',
           data: {
-              compteur : 0,  
-           
+              objChat: [ 
+                {race : 'persian' , age: 3, poids: "3kg"},
+                {race : 'persian' , age: 3, poids: "3kg"},
+                {race : 'persian' , age: 3, poids: "3kg"},
+                {race : 'persian' , age: 3, poids: "3kg"},
+              ],
+              toggleBox : false,
+              tableauFruits : ["orange","banane","peche","poire"] 
+             
           },
-          methods: {
-            plus : function () {
-                this.compteur++
-            },
-            moins : function () {
-                this.compteur--
-            },
-            checkValeur: function() {
-                return this.compteur > 10 ? 'Supérieur a 10' : 'Inférieur a 10' 
-            },
-        },  
-        watch: {
-            compteur : function() {
-                
-                setTimeout(() => {
-                    this.compteur = 0
-                }, 3000);
-                
-            }
-        },
-           
-            
-          
-          
 
-       
-      })
+          },)
     </script>
 </html>

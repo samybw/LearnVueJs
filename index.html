@@ -23,41 +23,63 @@
 </head>
 <body>
    
-    <div id="mon-app">
-        <h1>Vue Js Cours</h1>
+    <div id="mon-app1">
+       
+        <mon-premier-composant></mon-premier-composant>
+        <mon-premier-composant></mon-premier-composant>
+        <mon-premier-composant></mon-premier-composant>
+        <mon-premier-composant></mon-premier-composant>
+        <mon-premier-composant></mon-premier-composant>
+        <mon-premier-composant></mon-premier-composant>
         
-    <button v-on:click="toggleBox = !toggleBox"> color</button>
-      
-    <div v-if="toggleBox" class="box red"></div>
-    <p v-else-if="!toggleBox" class="box yellow"></p>
+                
+        
+    </div>
 
-    <ul>
-        <li v-for="obj in objChat">
-            <p v-for="(val, props) in obj"> {{ props }} : {{ val }}</p>
-        </li>
-    </ul>
+    <div id="mon-app2">
+       
+        <h2>{{ txt }}</h2>
+        <mon-premier-composant></mon-premier-composant>
 
     </div>
+
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
       
-      new Vue({
-          el: '#mon-app',
+     Vue.component('mon-premier-composant', {
+        template: '<p> Mon premier composant  {{ nom }} <button v-on:click="changementNom"> Changement </button> </p>',
+         data: function () {
+             return{
+                 nom: 'Samy'
+             }
+         },
+        methods: {
+            changementNom : function () {
+                this.nom = 'KingSamy'
+            }
+        }, 
+    })
+     const ins1 = new Vue({
+          el: '#mon-app1',
           data: {
-              objChat: [ 
-                {race : 'persian' , age: 3, poids: "3kg"},
-                {race : 'persian' , age: 3, poids: "3kg"},
-                {race : 'persian' , age: 3, poids: "3kg"},
-                {race : 'persian' , age: 3, poids: "3kg"},
-              ],
-              toggleBox : false,
-              tableauFruits : ["orange","banane","peche","poire"] 
-             
-          },
+              txt : "Hello app 1"
+          
+        }
 
-          },)
+          })
+        
+
+          const ins2 = new Vue({
+          el: '#mon-app2',
+          data: {
+              txt : "hello app 2"
+          
+        }
+
+          })
+
     </script>
 </html>
